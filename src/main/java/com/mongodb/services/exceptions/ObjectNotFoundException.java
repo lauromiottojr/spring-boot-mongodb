@@ -1,4 +1,4 @@
-package com.mongodb.services.exception;
+package com.mongodb.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

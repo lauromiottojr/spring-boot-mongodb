@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mongodb.models.User;
 import com.mongodb.repositories.UserRepository;
-import com.mongodb.services.exception.ObjectNotFoundException;
+import com.mongodb.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -22,7 +22,7 @@ public class UserService {
 
 	public User findById(String id) {
 		Optional<User> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado!!!"));
 	}
 
 }
