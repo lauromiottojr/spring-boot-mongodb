@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mongodb.dtos.UserDTO;
+import com.mongodb.models.Post;
 import com.mongodb.models.User;
 import com.mongodb.services.UserService;
 
@@ -60,8 +61,13 @@ public class UserController {
 		User obj = service.fromDTO(objDTO);
 		obj.setId(id);
 		obj = service.update(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.noContent().build();
+	}
+
+	@GetMapping(value = "/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+		User obj = service.findById(id);
+		return ResponseEntity.ok().body(obj.getPosts());
 	}
 
 }
